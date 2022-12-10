@@ -13,12 +13,12 @@ namespace PariPlayCars.Web
     {
         protected void Application_Start()
         {
-            var db = new PariPlayCarsDbContext();
-
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //var db = new PariPlayCarsDbContext();
         }
     }
 }

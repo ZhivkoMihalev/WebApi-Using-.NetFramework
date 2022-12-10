@@ -3,6 +3,7 @@
     using PariPlayCars.Data;
     using PariPlayCars.Data.Common;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
@@ -20,18 +21,31 @@
 
         protected PariPlayCarsDbContext Context { get; set; }
 
-        public virtual IQueryable<TEntity> All() => this.DbSet;
+        public async Task<IEnumerable<TEntity>> All() => await this.DbSet.ToListAsync();
 
-        public virtual Task<TEntity> GetByIdAsync(string id) => this.DbSet.FindAsync(id);
+        public async Task<TEntity> GetByIdAsync(string id) => await this.DbSet.FindAsync(id);
 
-        public virtual void Add(TEntity entity)
+        public async Task<TEntity> Add(TEntity entity)
         {
-            this.DbSet.Add(entity);
+            TEntity result;
+            if (entity != null)
+            {
+                result = this.DbSet.Add(entity);
+                await this.SaveChangesAsync();
+                return result;
+            }
+
+            else
+            {
+                return null;
+            }
         }
 
-        public virtual void Delete(TEntity entity)
+        public async Task<TEntity> Remove(TEntity entity)
         {
-            this.DbSet.Remove(entity);
+            var result = this.DbSet.Remove(entity);
+            await this.SaveChangesAsync();
+            return result;
         }
 
         public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();

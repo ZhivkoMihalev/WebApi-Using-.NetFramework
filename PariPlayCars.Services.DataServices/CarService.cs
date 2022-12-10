@@ -6,6 +6,7 @@
     using PariPlayCars.Services.DataServices.Models;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class CarService : ICarService
     {
@@ -16,19 +17,15 @@
             this.carRepository = carRepo;
         }
 
-        public IEnumerable<CarDTO> All()
+        public Task<IEnumerable<CarDTO>> All()
         {
-            return this.carRepository.All()
-                .Select(c => new CarDTO
-                {
-                    Brand = c.Brand,
-                    Model = c.Model,
-                    Year = c.Year
-                })
-                .ToArray();
+            return Task.FromResult(this.carRepository.All()
+                .GetAwaiter()
+                .GetResult()
+                .Select(x => new CarDTO { Brand = x.Brand, Model = x.Model, Year = x.Year }));
         }
 
-        public async void Create(CarDTO car)
+        public async Task Create(CarDTO car)
         {
             var check = Exist(car);
             if (!check)
@@ -40,27 +37,24 @@
                     Year = car.Year
                 };
 
-                this.carRepository.Add(newCar);
+                await this.carRepository.Add(newCar);
                 await this.carRepository.SaveChangesAsync();
             }
         }
 
-        public async void Delete(CarDTO car)
+        public async Task Delete(string id)
         {
-            var currentCar = this.carRepository
-                .All()
-                .FirstOrDefault(x => x.Brand == car.Brand && x.Model == car.Model && x.Year == car.Year);
-
+            var currentCar = await this.carRepository.GetByIdAsync(id);
             if (currentCar != null)
             {
-                this.carRepository.Delete(currentCar);
-                await this .carRepository.SaveChangesAsync();
+                await this.carRepository.Remove(currentCar);
+                await this.carRepository.SaveChangesAsync();
             }
         }
 
-        public CarDTO GetById(string id)
+        public async Task<CarDTO> GetById(string id)
         {
-            var car = this.carRepository.GetByIdAsync(id).Result;
+            var car = await this.carRepository.GetByIdAsync(id);
             if (car != null)
             {
                 return new CarDTO { Brand = car.Brand, Model = car.Model, Year = car.Year };
@@ -72,22 +66,18 @@
             }
         }
 
-        public IEnumerable<CarDTO> Search(string search)
+        public Task<IEnumerable<CarDTO>> Search(string search)
         {
-            return this.carRepository.All()
-                .Where(x => x.Brand == search || x.Model == search)
-                .Select(c => new CarDTO
-                {
-                    Brand = c.Brand,
-                    Model = c.Model,
-                    Year = c.Year
-                })
-                .ToList();
+            return Task.FromResult(this.carRepository.All()
+                .GetAwaiter()
+                .GetResult()
+                .Where(x => x.Brand.StartsWith(search) || x.Model.StartsWith(search))
+                .Select(x => new CarDTO { Brand = x.Brand, Model = x.Model, Year = x.Year }));
         }
 
         public bool Exist(CarDTO car)
         {
-            return this.carRepository.All().Any(c => c.Brand == car.Brand && c.Model == car.Model && c.Year == car.Year);
+            return this.carRepository.All().Result.Any(c => c.Brand == car.Brand && c.Model == car.Model && c.Year == car.Year);
         }
     }
 }

@@ -2,18 +2,19 @@
 {
     using PariPlayCars.Services.DataServices.Models;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ICarService
     {
-        IEnumerable<CarDTO> All();
+        Task<IEnumerable<CarDTO>> All();
 
-        void Create(CarDTO car);
+        Task Create(CarDTO car);
 
-        CarDTO GetById(string id);
+        Task<CarDTO> GetById(string id);
 
-        void Delete(CarDTO car);
+        Task Delete(string id);
 
-        IEnumerable<CarDTO> Search(string search);
+        Task<IEnumerable<CarDTO>> Search(string search);
 
         bool Exist(CarDTO car);
 

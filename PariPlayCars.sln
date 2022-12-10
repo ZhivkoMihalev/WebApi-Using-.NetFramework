@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{AE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariPlayCars.Services.DataServices", "PariPlayCars.Services.DataServices\PariPlayCars.Services.DataServices.csproj", "{6D848DBF-27F1-4D48-83BF-4226321D3B27}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CA9AD019-AAF0-4572-A249-100886D82C38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariPlayCars.Services.Tests", "PariPlayCars.Services.Tests\PariPlayCars.Services.Tests.csproj", "{EAE96A00-D7DE-4418-AC09-5127436E90EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,10 @@ Global
 		{6D848DBF-27F1-4D48-83BF-4226321D3B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D848DBF-27F1-4D48-83BF-4226321D3B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D848DBF-27F1-4D48-83BF-4226321D3B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAE96A00-D7DE-4418-AC09-5127436E90EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAE96A00-D7DE-4418-AC09-5127436E90EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAE96A00-D7DE-4418-AC09-5127436E90EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAE96A00-D7DE-4418-AC09-5127436E90EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 		{EF59623F-D373-478F-9D2B-D0BE953BFDEA} = {5479B2B2-7D1A-437A-B477-E0C761710A35}
 		{17BFB6CD-C2C4-4B15-9FBA-058800F4E5F8} = {5479B2B2-7D1A-437A-B477-E0C761710A35}
 		{6D848DBF-27F1-4D48-83BF-4226321D3B27} = {AE576D5E-2989-445A-AACE-BCCAD206145C}
+		{EAE96A00-D7DE-4418-AC09-5127436E90EB} = {CA9AD019-AAF0-4572-A249-100886D82C38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A81BED1-82A4-41CA-8327-49CC9A1FE4A0}
