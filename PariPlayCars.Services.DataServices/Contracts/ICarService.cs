@@ -6,17 +6,18 @@
 
     public interface ICarService
     {
-        Task<IEnumerable<CarDTO>> All();
+        Task<IEnumerable<CarDTO>> GetAllAsync();
 
-        Task Create(CarDTO car);
+        Task CreateAsync(CarDTO car);
 
-        Task<CarDTO> GetById(string id);
+        Task<CarDTO> GetByIdAsync(string id);
 
         Task Delete(string id);
 
-        Task<IEnumerable<CarDTO>> Search(string search);
+        Task<IEnumerable<CarDTO>> SearchByBrandAsync(string search);
 
-        bool Exist(CarDTO car);
+        Task<IEnumerable<CarDTO>> SearchByModelAsync(string search);
 
+        Task Update(string id, CarDTO newCar);
     }
 }

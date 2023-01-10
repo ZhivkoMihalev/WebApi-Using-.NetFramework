@@ -288,10 +288,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PariPlayCars.Data.Common\PariPlayCars.Data.Common.csproj">
-      <Project>{17BFB6CD-C2C4-4B15-9FBA-058800F4E5F8}</Project>
-      <Name>PariPlayCars.Data.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data\PariPlayCars.Data.csproj">
       <Project>{54FDCD87-CEC3-491F-AC0D-7DEB0D98A9ED}</Project>
       <Name>PariPlayCars.Data</Name>

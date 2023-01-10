@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54FDCD87-CEC3-491F-AC0D-7DEB0D98A9ED}</ProjectGuid>
+    <ProjectGuid>{158F7233-DD12-4DAB-960F-6B35424D76B9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PariPlayCars.Data</RootNamespace>
-    <AssemblyName>PariPlayCars.Data</AssemblyName>
+    <RootNamespace>PariPlayCars.Data.Repositories</RootNamespace>
+    <AssemblyName>PariPlayCars.Data.Repositories</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -43,8 +43,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,36 +51,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C__MigrationHistory.cs" />
-    <Compile Include="Migrations\202212010732568_InitialCreate.cs" />
-    <Compile Include="Migrations\202212010732568_InitialCreate.designer.cs">
-      <DependentUpon>202212010732568_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202212010851353_addRequired.cs" />
-    <Compile Include="Migrations\202212010851353_addRequired.designer.cs">
-      <DependentUpon>202212010851353_addRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="PariPlayCarsDbContext.cs" />
+    <Compile Include="CarRepository.cs" />
+    <Compile Include="GenericRepo\GenericRepository.cs" />
+    <Compile Include="GenericRepo\IGenericRepository.cs" />
+    <Compile Include="ICarRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202212010732568_InitialCreate.resx">
-      <DependentUpon>202212010732568_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212010851353_addRequired.resx">
-      <DependentUpon>202212010851353_addRequired.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PariPlayCars.Data.Models\PariPlayCars.Data.Models.csproj">
       <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>
       <Name>PariPlayCars.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PariPlayCars.Data\PariPlayCars.Data.csproj">
+      <Project>{54fdcd87-cec3-491f-ac0d-7deb0d98a9ed}</Project>
+      <Name>PariPlayCars.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

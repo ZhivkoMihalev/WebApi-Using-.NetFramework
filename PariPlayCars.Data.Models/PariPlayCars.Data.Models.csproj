@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EF59623F-D373-478F-9D2B-D0BE953BFDEA}</ProjectGuid>
+    <ProjectGuid>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PariPlayCars.Data.Models</RootNamespace>

@@ -73,13 +73,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PariPlayCars.Data.Common\PariPlayCars.Data.Common.csproj">
-      <Project>{17BFB6CD-C2C4-4B15-9FBA-058800F4E5F8}</Project>
-      <Name>PariPlayCars.Data.Common</Name>
+    <ProjectReference Include="..\AbstractDbContext\AbstractDbContext.csproj">
+      <Project>{2D785450-A120-4BC1-98E5-08DF004CD85A}</Project>
+      <Name>AbstractDbContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data.Models\PariPlayCars.Data.Models.csproj">
-      <Project>{EF59623F-D373-478F-9D2B-D0BE953BFDEA}</Project>
+      <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>
       <Name>PariPlayCars.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PariPlayCars.Data.Repositories\PariPlayCars.Data.Repositories.csproj">
+      <Project>{158F7233-DD12-4DAB-960F-6B35424D76B9}</Project>
+      <Name>PariPlayCars.Data.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data\PariPlayCars.Data.csproj">
       <Project>{54FDCD87-CEC3-491F-AC0D-7DEB0D98A9ED}</Project>

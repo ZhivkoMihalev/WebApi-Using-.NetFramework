@@ -3,7 +3,6 @@
     using PariPlayCars.Services.DataServices.Contracts;
     using PariPlayCars.Services.DataServices.Models;
     using PariPlayCars.WebAPI.Models.InputModels;
-    using PariPlayCars.WebAPI.Models.ViewModels;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -21,123 +20,57 @@
         // GET: Car
         [HttpGet]
         [Route(nameof(GetAll))]
-        public async Task<IEnumerable<CarViewModel>> GetAll()
+        public async Task<IEnumerable<CarDTO>> GetAll()
         {
-            var allCars = await this.service.All();
-            var result = new List<CarViewModel>();
-            foreach (var car in allCars)
-            {
-                var newCar = new CarViewModel
-                {
-                    Brand = car.Brand,
-                    Model = car.Model,
-                    Year = car.Year
-                };
-
-                result.Add(newCar);
-            }
-
-            return result;
+            return await this.service.GetAllAsync();
         }
 
         // GET: Car/Details/5
         [HttpGet]
         [Route(nameof(Details))]
-        public async Task<CarViewModel> Details(string id)
+        public async Task<CarDTO> Details(string id)
         {
-            var item = await service.GetById(id);
-
-            if (item is null)
-            {
-                return null;
-            }
-
-            var result = new CarViewModel { Brand = item.Brand, Model = item.Brand, Year = item.Year };
-
-            return result;
+            return await service.GetByIdAsync(id);
         }
 
         // POST: Car/Create
         [HttpPost]
         [Route(nameof(Create))]
-        public async Task<CarViewModel> Create(CarInputModel inputCar)
+        public async Task<CarDTO> Create(CarInputModel inputCar)
         {
-            try
+            var currentCar = new CarDTO
             {
-                if (!ModelState.IsValid)
-                {
-                    return null;
-                }
+                Brand = inputCar.Brand,
+                Model = inputCar.Model,
+                Year = inputCar.Year
+            };
 
-                var currentCar = new CarDTO
-                {
-                    Brand = inputCar.Brand,
-                    Model = inputCar.Model,
-                    Year = inputCar.Year
-                };
-
-                if (this.service.Exist(currentCar))
-                {
-                    return null;
-                }
-
-                await this.service.Create(currentCar);
-                var returnCar = new CarViewModel
-                {
-                    Brand = currentCar.Brand,
-                    Model = currentCar.Model,
-                    Year = currentCar.Year
-                };
-
-                return returnCar;
-            }
-
-            catch
-            {
-                return null;
-            }
+            await this.service.CreateAsync(currentCar);
+            return currentCar;
         }
 
         // GET: Car/Edit/5
         //[HttpGet]
-        //public async Task<CarViewModel> Edit(CarInputModel inputCar)
+        //public async Task<CarDTO> Edit(CarInputModel inputCar)
         //{
         //}
 
         // POST: Car/Edit/5
         [HttpPost]
         [Route(nameof(Edit))]
-        public async Task<CarViewModel> Edit(string id, CarInputModel inputCar)
+        public async Task Edit(string id, CarDTO inputCar)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                var item = await this.service.GetById(id);
-                if (item is null)
-                {
-                    return null;
-                }
-
-                if (!ModelState.IsValid)
-                {
-                    return null;
-                }
-
-                item.Brand = inputCar.Brand;
-                item.Model = inputCar.Model;
-                item.Year = inputCar.Year;
-
-                return new CarViewModel { Brand = item.Brand, Model = item.Model, Year = item.Year };
+                //return message "It doesn't exist a car with this id.
             }
 
-            catch
-            {
-                return null;
-            }
+            await this.service.Update(id, inputCar);
         }
 
         // GET: Car/Delete/5
         //[HttpGet]
-        //public async Task<CarViewModel> Delete(int id)
+        //public async Task<CarDTO> Delete(int id)
         //{
         //    return
         //}
@@ -145,31 +78,9 @@
         // POST: Car/Delete/5
         [HttpDelete]
         [Route(nameof(Delete))]
-        public async Task<CarViewModel> Delete(string id)
+        public async Task<CarDTO> Delete(string id)
         {
-            try
-            {
-                var item = await this.service.GetById(id);
-                if (item is null)
-                {
-                    return null;
-                }
-
-                await this.service.Delete(id);
-                var returnCar = new CarViewModel
-                {
-                    Brand = item.Brand,
-                    Model = item.Model,
-                    Year = item.Year
-                };
-
-                return returnCar;
-            }
-
-            catch
-            {
-                return null;
-            }
+            return await this.Delete(id);
         }
     }
 }

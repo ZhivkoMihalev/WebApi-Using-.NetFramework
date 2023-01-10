@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PariPlayCars.Data.Models
 {
     public class Car
     {
-        public Guid Id { get; set; } = new Guid();
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public virtual Guid Id { get; set; }
 
         [Required]
-        public string Brand { get; set; }
+        public virtual string Brand { get; set; }
 
         [Required]
-        public string Model { get; set; }
+        public virtual string Model { get; set; }
 
-        [Required]
-        public int Year { get; set; }
+        public virtual int Year { get; set; }
     }
 }

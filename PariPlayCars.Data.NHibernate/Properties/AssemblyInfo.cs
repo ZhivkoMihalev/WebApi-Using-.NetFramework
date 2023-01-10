@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PariPlayCars.Data.Models")]
+[assembly: AssemblyTitle("PariPlayCars.Data.NHibernate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PariPlayCars.Data.Models")]
+[assembly: AssemblyProduct("PariPlayCars.Data.NHibernate")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4517582a-fce2-44a1-a28c-9d16a49580d8")]
+[assembly: Guid("b273a2f8-ef88-4eeb-81d6-ce778e6a6b08")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,5 +1,6 @@
 ﻿namespace PariPlayCars.Data
 {
+    using PariPlayCars.Data.Models;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
 
