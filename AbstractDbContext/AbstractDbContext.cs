@@ -17,7 +17,7 @@
             this._context = context;
         }
 
-        public IGenericRepository<Car> CarRepo
+        public IGenericRepository<Car> CarRepository
         {
             get
             {
@@ -29,8 +29,6 @@
                 return this._carRepo;
             }
         }
-
-        public IGenericRepository<Car> CarRepository => throw new NotImplementedException();
 
         public async Task SaveChangesAsync()
         {
