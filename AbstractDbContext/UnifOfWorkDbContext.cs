@@ -1,4 +1,4 @@
-﻿namespace AbstractDbContext
+﻿namespace UnifOfWorkDbContext
 {
     using PariPlayCars.Data;
     using PariPlayCars.Data.Models;
@@ -7,12 +7,12 @@
     using System.Threading.Tasks;
 
     //If we have more repositories, we have to initialize them here like _carRepo
-    public class AbstractDbContext : IAbstractDbContext
+    public class UnifOfWorkDbContext : IUnifOfWorkDbContext
     {
         private PariPlayCarsDbContext _context;
         private IGenericRepository<Car> _carRepo;
 
-        public AbstractDbContext(PariPlayCarsDbContext context)
+        public UnifOfWorkDbContext(PariPlayCarsDbContext context)
         {
             this._context = context;
         }

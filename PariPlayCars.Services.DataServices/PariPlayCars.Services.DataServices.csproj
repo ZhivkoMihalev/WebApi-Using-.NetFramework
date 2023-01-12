@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractDbContext\AbstractDbContext.csproj">
+    <ProjectReference Include="..\AbstractDbContext\PariplayCars.Data.UnifOfWorkDbContext.csproj">
       <Project>{2d785450-a120-4bc1-98e5-08df004cd85a}</Project>
-      <Name>AbstractDbContext</Name>
+      <Name>PariplayCars.Data.UnifOfWorkDbContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data.Models\PariPlayCars.Data.Models.csproj">
       <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>

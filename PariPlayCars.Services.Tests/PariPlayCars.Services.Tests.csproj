@@ -73,9 +73,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractDbContext\AbstractDbContext.csproj">
+    <ProjectReference Include="..\AbstractDbContext\PariplayCars.Data.UnifOfWorkDbContext.csproj">
       <Project>{2D785450-A120-4BC1-98E5-08DF004CD85A}</Project>
-      <Name>AbstractDbContext</Name>
+      <Name>PariplayCars.Data.UnifOfWorkDbContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data.Models\PariPlayCars.Data.Models.csproj">
       <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>

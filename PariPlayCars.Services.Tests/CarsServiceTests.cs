@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using AbstractDbContext;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using PariPlayCars.Data.Models;
     using PariPlayCars.Services.DataServices;
     using PariPlayCars.Services.DataServices.Models;
+    using UnifOfWorkDbContext;
 
     [TestClass]
     public class CarsServiceTests
@@ -20,7 +20,7 @@
             var car1 = new CarDTO { Brand = "BMW", Model = "530d", Year = 1999 };
             var car2 = new CarDTO { Brand = "Audi", Model = "A4", Year = 2010 };
             var carsList = new List<Car>();
-            var mockRepo = new Mock<AbstractDbContext>();
+            var mockRepo = new Mock<UnifOfWorkDbContext>();
             mockRepo.Setup(x => x.CarRepository.Add(It.IsAny<Car>())).Callback((Car car) => carsList.Add(car));
 
             var service = new CarService(mockRepo.Object);
@@ -38,7 +38,7 @@
                 new Car { Id = new Guid(), Brand = "Audi", Model = "A4", Year = 2010 }
             };
 
-            var mockRepo = new Mock<AbstractDbContext>();
+            var mockRepo = new Mock<UnifOfWorkDbContext>();
             mockRepo.Setup(x => x.CarRepository.Remove(It.IsAny<Car>())).Callback((Car car) => carsList.Remove(car));
 
             var service = new CarService(mockRepo.Object);
@@ -55,7 +55,7 @@
                 new Car { Id = new Guid(), Brand = "Audi", Model = "A4", Year = 2010 }
             };
 
-            var mockRepo = new Mock<AbstractDbContext>();
+            var mockRepo = new Mock<UnifOfWorkDbContext>();
             mockRepo.Setup(x => x.CarRepository.GetAllAsync().Result).Callback(() => carsList.ToList());
 
             var service = new CarService(mockRepo.Object);

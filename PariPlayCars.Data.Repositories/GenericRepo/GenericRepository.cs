@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Validation;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>, IDisposable
@@ -20,15 +19,13 @@
         //{
         //}
 
-        public GenericRepository(PariPlayCarsDbContext context)
+        protected GenericRepository(PariPlayCarsDbContext context)
         {
             _isDisposed = false;
             this.Context = context;
         }
 
         public PariPlayCarsDbContext Context { get; set; }
-
-        public virtual IQueryable<TEntity> Table => this.Entities;
 
         protected virtual IDbSet<TEntity> Entities
             => this._entities ?? (_entities = this.Context.Set<TEntity>());
@@ -108,16 +105,6 @@
                     }
                 }
             }
-        }
-
-        public virtual void SetEntryModified(TEntity entity)
-        {
-            this.Context.Entry(entity).State = EntityState.Modified;
-        }
-
-        public async Task SaveChangesAsync()
-        {
-            await this.Context.SaveChangesAsync();
         }
     }
 }

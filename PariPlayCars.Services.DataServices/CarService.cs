@@ -6,32 +6,28 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using AbstractDbContext;
+    using UnifOfWorkDbContext;
 
     public class CarService : ICarService
     {
-        private readonly IAbstractDbContext _context;
+        private readonly IUnifOfWorkDbContext _context;
 
-        public CarService(AbstractDbContext context)
+        public CarService(IUnifOfWorkDbContext context)
         {
             this._context = context;
         }
 
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
-            //var temp = await this._context.CarRepository.GetAllAsync();
-            //var result = temp.Select(x => new CarDTO
-            //{
-            //    Brand = x.Brand,
-            //    Model = x.Model,
-            //    Year = x.Year
-            //}).ToList();
-            return (await this._context.CarRepository.GetAllAsync()).Select(x => new CarDTO
+            var temp = await this._context.CarRepository.GetAllAsync();
+            var result = temp.Select(x => new CarDTO
             {
                 Brand = x.Brand,
                 Model = x.Model,
                 Year = x.Year
             }).ToList();
+
+            return result;
         }
         
         public async Task<CarDTO> GetByIdAsync(string id)
