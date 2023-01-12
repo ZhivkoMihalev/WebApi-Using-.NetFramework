@@ -1,18 +1,17 @@
-﻿namespace UnifOfWorkDbContext
+﻿namespace UnitOfWorkDbContext
 {
     using PariPlayCars.Data;
+    using System.Threading.Tasks;
     using PariPlayCars.Data.Models;
     using Repositories.GenericRepo;
-    using System;
-    using System.Threading.Tasks;
 
     //If we have more repositories, we have to initialize them here like _carRepo
-    public class UnifOfWorkDbContext : IUnifOfWorkDbContext
+    public class UnitOfWorkDbContext : IUnitOfWorkDbContext
     {
         private PariPlayCarsDbContext _context;
         private IGenericRepository<Car> _carRepo;
 
-        public UnifOfWorkDbContext(PariPlayCarsDbContext context)
+        public UnitOfWorkDbContext(PariPlayCarsDbContext context)
         {
             this._context = context;
         }

@@ -1,23 +1,18 @@
 ﻿namespace Repositories.GenericRepo
 {
     using PariPlayCars.Data;
+    using PariPlayCars.Data.ApplicationExceptions;
+    using PariPlayCars.Data.Utils;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Data.Entity.Validation;
     using System.Threading.Tasks;
 
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>, IDisposable
         where TEntity : class
     {
         private IDbSet<TEntity> _entities;
-        private string _errorMessage = string.Empty;
         private bool _isDisposed;
-
-        //public GenericRepository(IAbstractDbContext<PariPlayCarsDbContext> abstractDbContext)
-        //    : this(abstractDbContext.Context)
-        //{
-        //}
 
         protected GenericRepository(PariPlayCarsDbContext context)
         {
@@ -32,33 +27,12 @@
 
         public void Add(TEntity entity)
         {
-            try
+            if (this.Context == null || this._isDisposed)
             {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("The entity is null");
-                }
-
-                if (this.Context == null || this._isDisposed)
-                {
-                    this.Context = new PariPlayCarsDbContext();
-                }
-
-                this.Entities.Add(entity);
-                //await this.Context.SaveChangesAsync();
+                this.Context = new PariPlayCarsDbContext();
             }
 
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        this._errorMessage += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
-                        throw new Exception(this._errorMessage, ex);
-                    }
-                }
-            }
+            this.Entities.Add(entity);
         }
 
         public void Dispose()
@@ -78,33 +52,22 @@
 
         public virtual void Remove(TEntity entity)
         {
-            try
+            if (entity == null)
             {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("The entity is null.");
-                }
-
-                if (this.Context == null || this._isDisposed)
-                {
-                    this.Context = new PariPlayCarsDbContext();
-                }
-
-                this.Entities.Remove(entity);
-                //await this.Context.SaveChangesAsync();
+                throw new EntityNotFoundException(ExceptionMessages.CarNotFound);    
             }
 
-            catch (DbEntityValidationException ex)
+            if (this.Context == null || this._isDisposed)
             {
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        this._errorMessage += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
-                        throw new Exception(this._errorMessage, ex);
-                    }
-                }
+                this.Context = new PariPlayCarsDbContext();
             }
+
+            this.Entities.Remove(entity);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await this.Context.SaveChangesAsync();
         }
     }
 }

@@ -1,25 +1,28 @@
 ﻿namespace PariPlayCars.Services.DataServices
 {
     using PariPlayCars.Data.Models;
-    using PariPlayCars.Services.DataServices.Contracts;
     using PariPlayCars.Services.DataServices.Models;
-    using System.Collections.Generic;
+    using PariPlayCars.Services.DataServices.Contracts;
+    
     using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using UnifOfWorkDbContext;
+    using PariPlayCars.Data.ApplicationExceptions;
+    using PariPlayCars.Data.Utils;
+    using PariPlayCars.Data;
 
     public class CarService : ICarService
     {
-        private readonly IUnifOfWorkDbContext _context;
+        private readonly CarRepository _carRepository;
 
-        public CarService(IUnifOfWorkDbContext context)
+        public CarService(CarRepository repository)
         {
-            this._context = context;
+            this._carRepository = repository;
         }
 
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
-            var temp = await this._context.CarRepository.GetAllAsync();
+            var temp = await this._carRepository.GetAllAsync();
             var result = temp.Select(x => new CarDTO
             {
                 Brand = x.Brand,
@@ -32,10 +35,10 @@
         
         public async Task<CarDTO> GetByIdAsync(string id)
         {
-            var car = await this._context.CarRepository.GetByIdAsync(id);
+            var car = await this._carRepository.GetByIdAsync(id);
             if (car == null)
             {
-                //TODO return message "A car with this id doesn't exist."
+                throw new EntityNotFoundException(ExceptionMessages.CarNotFound);
             }
 
             var returnCar = new CarDTO
@@ -71,35 +74,40 @@
                 Year = car.Year
             };
 
-            if (this._context.CarRepository.GetAllAsync().Result
+            if (this._carRepository.GetAllAsync().Result
                 .Any(x => x.Brand == newCar.Brand && x.Model == newCar.Model && x.Year == newCar.Year))
             {
-                //TODO return message "already exist"
+                throw new EntityAlreadyExistsException(ExceptionMessages.CarAlreadyExist);
             }
 
-            this._context.CarRepository.Add(newCar);
-            await this ._context.SaveChangesAsync();
+            this._carRepository.Add(newCar);
+            await this._carRepository.SaveChangesAsync();
         }
 
         public async Task Delete(string id)
         {
-            var checkExistCar = this._context.CarRepository.GetByIdAsync(id).Result;
+            var checkExistCar = this._carRepository.GetByIdAsync(id).Result;
             if (checkExistCar == null)
             {
-                //TODO return message "A car with this id doesn't exist!"
+                throw new EntityNotFoundException(ExceptionMessages.CarNotFound);
             }
 
-            this._context.CarRepository.Remove(checkExistCar);
-            await this._context.SaveChangesAsync();
+            this._carRepository.Remove(checkExistCar);
+            await this._carRepository.SaveChangesAsync();
         }
 
         public async Task Update(string id, CarDTO newCar)
         {
             var car = await this.GetByIdAsync(id);
+            if (car == null)
+            {
+                throw new EntityNotFoundException(ExceptionMessages.CarNotFound);
+            }
+
             car.Brand = newCar.Brand;
             car.Model = newCar.Model;
             car.Year = newCar.Year;
-            await this._context.SaveChangesAsync();
+            await this._carRepository.SaveChangesAsync();
         }
     }
 }

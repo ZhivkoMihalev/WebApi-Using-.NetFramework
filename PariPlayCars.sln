@@ -21,9 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CA9AD019
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariPlayCars.Services.Tests", "PariPlayCars.Services.Tests\PariPlayCars.Services.Tests.csproj", "{EAE96A00-D7DE-4418-AC09-5127436E90EB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnifOfWorkDbContext", "UnifOfWorkDbContext", "{85CC7A6F-253F-47D3-9B60-AA507D0CF0B5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitOfWorkDbContext", "UnitOfWorkDbContext", "{85CC7A6F-253F-47D3-9B60-AA507D0CF0B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariplayCars.Data.UnifOfWorkDbContext", "AbstractDbContext\PariplayCars.Data.UnifOfWorkDbContext.csproj", "{2D785450-A120-4BC1-98E5-08DF004CD85A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariplayCars.Data.UnitOfWorkDbContext", "AbstractDbContext\PariplayCars.Data.UnitOfWorkDbContext.csproj", "{2D785450-A120-4BC1-98E5-08DF004CD85A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{38766E4E-D618-4B19-9C12-D055024063C1}"
 EndProject

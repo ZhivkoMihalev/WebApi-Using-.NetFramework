@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,9 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractDbContext\PariplayCars.Data.UnifOfWorkDbContext.csproj">
+    <ProjectReference Include="..\AbstractDbContext\PariplayCars.Data.UnitOfWorkDbContext.csproj">
       <Project>{2d785450-a120-4bc1-98e5-08df004cd85a}</Project>
-      <Name>PariplayCars.Data.UnifOfWorkDbContext</Name>
+      <Name>PariplayCars.Data.UnitOfWorkDbContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data.Models\PariPlayCars.Data.Models.csproj">
       <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>
@@ -60,6 +62,13 @@
       <Project>{158F7233-DD12-4DAB-960F-6B35424D76B9}</Project>
       <Name>PariPlayCars.Data.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PariPlayCars.Data\PariPlayCars.Data.csproj">
+      <Project>{54FDCD87-CEC3-491F-AC0D-7DEB0D98A9ED}</Project>
+      <Name>PariPlayCars.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

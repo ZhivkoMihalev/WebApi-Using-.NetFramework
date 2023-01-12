@@ -1,10 +1,10 @@
-﻿namespace UnifOfWorkDbContext
+﻿namespace UnitOfWorkDbContext
 {
     using PariPlayCars.Data.Models;
     using Repositories.GenericRepo;
     using System.Threading.Tasks;
 
-    public interface IUnifOfWorkDbContext
+    public interface IUnitOfWorkDbContext
     {
         IGenericRepository<Car> CarRepository { get; }
 

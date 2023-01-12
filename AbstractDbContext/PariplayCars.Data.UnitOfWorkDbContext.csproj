@@ -51,8 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnifOfWorkDbContext.cs" />
-    <Compile Include="IUnifOfWorkDbContext.cs" />
+    <Compile Include="UnitOfWorkDbContext.cs" />
+    <Compile Include="IUnitOfWorkDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
