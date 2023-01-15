@@ -1,11 +1,11 @@
 ﻿namespace PariPlayCars.Data
 {
+    using System.Linq;
+    using System.Data.Entity;
+    using System.Threading.Tasks;
     using PariPlayCars.Data.Models;
     using Repositories.GenericRepo;
     using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class CarRepository : GenericRepository<Car>, ICarRepository
     {

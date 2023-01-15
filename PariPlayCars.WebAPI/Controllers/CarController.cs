@@ -36,17 +36,9 @@
         // POST: Car/Create
         [HttpPost]
         [Route(nameof(Create))]
-        public async Task<CarDTO> Create(CarInputModel inputCar)
+        public async Task Create(CarDTO inputCar)
         {
-            var currentCar = new CarDTO
-            {
-                Brand = inputCar.Brand,
-                Model = inputCar.Model,
-                Year = inputCar.Year
-            };
-
-            await this.service.CreateAsync(currentCar);
-            return currentCar;
+            await this.service.CreateAsync(inputCar);
         }
 
         // GET: Car/Edit/5
@@ -78,9 +70,9 @@
         // POST: Car/Delete/5
         [HttpDelete]
         [Route(nameof(Delete))]
-        public async Task<CarDTO> Delete(string id)
+        public async Task Delete(CarDTO deleteCar)
         {
-            return await this.Delete(id);
+            await this.service.DeleteAsync(deleteCar);
         }
     }
 }

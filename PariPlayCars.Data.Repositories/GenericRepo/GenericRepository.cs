@@ -1,12 +1,10 @@
 ﻿namespace Repositories.GenericRepo
 {
     using PariPlayCars.Data;
-    using PariPlayCars.Data.ApplicationExceptions;
-    using PariPlayCars.Data.Utils;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>, IDisposable
         where TEntity : class
@@ -52,11 +50,6 @@
 
         public virtual void Remove(TEntity entity)
         {
-            if (entity == null)
-            {
-                throw new EntityNotFoundException(ExceptionMessages.CarNotFound);    
-            }
-
             if (this.Context == null || this._isDisposed)
             {
                 this.Context = new PariPlayCarsDbContext();

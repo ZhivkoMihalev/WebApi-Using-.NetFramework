@@ -1,10 +1,10 @@
 ﻿namespace PariPlayCars.Data.Middlewares
 {
-    using PariPlayCars.Data.ApplicationExceptions;
     using System;
     using System.Net;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
+    using PariPlayCars.Data.ApplicationExceptions;
 
     public class CustomExceptionMiddleware
     {

@@ -12,7 +12,7 @@
 
         Task<CarDTO> GetByIdAsync(string id);
 
-        Task Delete(string id);
+        Task DeleteAsync(CarDTO car);
 
         Task<IEnumerable<CarDTO>> SearchByBrandAsync(string search);
 

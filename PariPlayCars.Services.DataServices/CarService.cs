@@ -5,34 +5,33 @@
     using PariPlayCars.Services.DataServices.Contracts;
     
     using System.Linq;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using PariPlayCars.Data.ApplicationExceptions;
-    using PariPlayCars.Data.Utils;
     using PariPlayCars.Data;
+    using System.Threading.Tasks;
+    using PariPlayCars.Data.Utils;
+    using System.Collections.Generic;
+    using PariPlayCars.Data.ApplicationExceptions;
 
     public class CarService : ICarService
     {
-        private readonly CarRepository _carRepository;
+        private readonly ICarRepository _carRepository;
 
-        public CarService(CarRepository repository)
+        public CarService(ICarRepository repository)
         {
             this._carRepository = repository;
         }
 
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
-            var temp = await this._carRepository.GetAllAsync();
-            var result = temp.Select(x => new CarDTO
+            var cars =  await this._carRepository.GetAllAsync();
+            return cars.Select(x => new CarDTO
             {
                 Brand = x.Brand,
                 Model = x.Model,
                 Year = x.Year
             }).ToList();
-
-            return result;
         }
-        
+
+
         public async Task<CarDTO> GetByIdAsync(string id)
         {
             var car = await this._carRepository.GetByIdAsync(id);
@@ -41,14 +40,12 @@
                 throw new EntityNotFoundException(ExceptionMessages.CarNotFound);
             }
 
-            var returnCar = new CarDTO
+            return new CarDTO
             {
                 Brand = car.Brand,
                 Model = car.Model,
                 Year = car.Year
             };
-
-            return returnCar;
         }
 
         public async Task<IEnumerable<CarDTO>> SearchByBrandAsync(string search)
@@ -84,15 +81,17 @@
             await this._carRepository.SaveChangesAsync();
         }
 
-        public async Task Delete(string id)
+        public async Task DeleteAsync(CarDTO car)
         {
-            var checkExistCar = this._carRepository.GetByIdAsync(id).Result;
+            var checkExistCar = this._carRepository.GetAllAsync().Result;
+            var searchedCar = checkExistCar
+                .FirstOrDefault(x => x.Brand == car.Brand && x.Model == car.Model && x.Year == car.Year);
             if (checkExistCar == null)
             {
                 throw new EntityNotFoundException(ExceptionMessages.CarNotFound);
             }
 
-            this._carRepository.Remove(checkExistCar);
+            this._carRepository.Remove(searchedCar);
             await this._carRepository.SaveChangesAsync();
         }
 
