@@ -1,23 +1,25 @@
 ﻿namespace PariPlayCars.Services.DataServices
 {
+    using PariPlayCars.Data;
+    using PariPlayCars.Data.Utils;
     using PariPlayCars.Data.Models;
+    using PariPlayCars.Data.ApplicationExceptions;
     using PariPlayCars.Services.DataServices.Models;
     using PariPlayCars.Services.DataServices.Contracts;
     
     using System.Linq;
-    using PariPlayCars.Data;
     using System.Threading.Tasks;
-    using PariPlayCars.Data.Utils;
     using System.Collections.Generic;
-    using PariPlayCars.Data.ApplicationExceptions;
+    using PariPlayCars.Data.Middlewares.Contracts;
 
-    public class CarService : ICarService
+    public class CarService : MiddlewareDecorator, ICarService
     {
         private readonly ICarRepository _carRepository;
 
-        public CarService(ICarRepository repository)
+        public CarService(ICarRepository repository, Middleware middleware)
+            : base(middleware)
         {
-            this._carRepository = repository;
+            _carRepository = repository;
         }
 
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
@@ -30,7 +32,6 @@
                 Year = x.Year
             }).ToList();
         }
-
 
         public async Task<CarDTO> GetByIdAsync(string id)
         {
@@ -107,6 +108,11 @@
             car.Model = newCar.Model;
             car.Year = newCar.Year;
             await this._carRepository.SaveChangesAsync();
+        }
+
+        public void Display()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

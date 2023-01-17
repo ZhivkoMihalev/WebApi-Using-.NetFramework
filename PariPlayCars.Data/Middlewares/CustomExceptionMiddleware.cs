@@ -5,21 +5,23 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using PariPlayCars.Data.ApplicationExceptions;
+    using PariPlayCars.Data.Middlewares.Contracts;
 
-    public class CustomExceptionMiddleware
+    public class CustomExceptionMiddleware : Middleware
     {
         private readonly RequestDelegate _next;
 
         public CustomExceptionMiddleware(RequestDelegate next)
+            //:base(next)
         {
-            _next = next;
+            this._next = next;
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public override async Task InvokeAsync(HttpContext context)
         {
             try
             {
-                await _next(context);
+                await this._next(context);
             }
 
             catch (EntityAlreadyExistsException exception)

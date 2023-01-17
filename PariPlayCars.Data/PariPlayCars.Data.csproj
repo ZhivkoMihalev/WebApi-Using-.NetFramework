@@ -81,6 +81,8 @@
     <Compile Include="ApplicationExceptions\EntityAlreadyExistsException.cs" />
     <Compile Include="ApplicationExceptions\EntityNotFoundException.cs" />
     <Compile Include="C__MigrationHistory.cs" />
+    <Compile Include="Middlewares\Contracts\Middleware.cs" />
+    <Compile Include="Middlewares\Contracts\MiddlewareDecorator.cs" />
     <Compile Include="Middlewares\CustomExceptionMiddleware.cs" />
     <Compile Include="Migrations\202212010732568_InitialCreate.cs" />
     <Compile Include="Migrations\202212010732568_InitialCreate.designer.cs">
