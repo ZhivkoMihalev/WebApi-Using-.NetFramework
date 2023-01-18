@@ -84,10 +84,10 @@
 
         public async Task DeleteAsync(CarDTO car)
         {
-            var checkExistCar = this._carRepository.GetAllAsync().Result;
-            var searchedCar = checkExistCar
+            var allCars = this._carRepository.GetAllAsync().Result;
+            var searchedCar = allCars
                 .FirstOrDefault(x => x.Brand == car.Brand && x.Model == car.Model && x.Year == car.Year);
-            if (checkExistCar == null)
+            if (searchedCar == null)
             {
                 throw new EntityNotFoundException(ExceptionMessages.CarNotFound);
             }
