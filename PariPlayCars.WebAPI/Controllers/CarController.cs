@@ -2,7 +2,6 @@
 {
     using PariPlayCars.Services.DataServices.Contracts;
     using PariPlayCars.Services.DataServices.Models;
-    using PariPlayCars.WebAPI.Models.InputModels;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web.Http;

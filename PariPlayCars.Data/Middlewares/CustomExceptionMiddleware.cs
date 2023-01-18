@@ -7,7 +7,7 @@
     using PariPlayCars.Data.ApplicationExceptions;
     using PariPlayCars.Data.Middlewares.Contracts;
 
-    public class CustomExceptionMiddleware : Middleware
+    public class CustomExceptionMiddleware : IExceptionMiddleware
     {
         private readonly RequestDelegate _next;
 
@@ -17,7 +17,7 @@
             this._next = next;
         }
 
-        public override async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
@@ -35,7 +35,7 @@
             catch (EntityNotFoundException exception)
             {
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
                 await context.Response.WriteAsync(exception.Message);
             }

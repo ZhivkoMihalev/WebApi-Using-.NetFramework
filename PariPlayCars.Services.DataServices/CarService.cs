@@ -1,30 +1,28 @@
 ﻿namespace PariPlayCars.Services.DataServices
 {
-    using PariPlayCars.Data;
     using PariPlayCars.Data.Utils;
     using PariPlayCars.Data.Models;
     using PariPlayCars.Data.ApplicationExceptions;
     using PariPlayCars.Services.DataServices.Models;
     using PariPlayCars.Services.DataServices.Contracts;
-    
+
     using System.Linq;
+    using PariPlayCars.Data;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using PariPlayCars.Data.Middlewares.Contracts;
 
-    public class CarService : MiddlewareDecorator, ICarService
+    public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
 
-        public CarService(ICarRepository repository, Middleware middleware)
-            : base(middleware)
+        public CarService(ICarRepository repository)
         {
             _carRepository = repository;
         }
 
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
-            var cars =  await this._carRepository.GetAllAsync();
+            var cars = await this._carRepository.GetAllAsync();
             return cars.Select(x => new CarDTO
             {
                 Brand = x.Brand,
@@ -55,14 +53,14 @@
             var result = temp.Where(c => c.Brand == search).ToList();
             return result;
         }
-        
+
         public async Task<IEnumerable<CarDTO>> SearchByModelAsync(string search)
         {
             var temp = await this.GetAllAsync();
             var result = temp.Where(c => c.Model == search).ToList();
             return result;
         }
-        
+
         public async Task CreateAsync(CarDTO car)
         {
             var newCar = new Car
