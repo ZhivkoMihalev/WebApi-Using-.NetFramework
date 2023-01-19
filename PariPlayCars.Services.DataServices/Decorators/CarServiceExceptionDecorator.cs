@@ -3,8 +3,6 @@ using PariPlayCars.Services.DataServices.Contracts;
 using PariPlayCars.Services.DataServices.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PariPlayCars.Services.DataServices.Decorators
@@ -22,7 +20,7 @@ namespace PariPlayCars.Services.DataServices.Decorators
 
         public Task CreateAsync(CarDTO car)
         {
-            this._middleware.InvokeAsync();
+            //this._middleware.InvokeAsync();
             return _decorated.CreateAsync(car);
         }
 

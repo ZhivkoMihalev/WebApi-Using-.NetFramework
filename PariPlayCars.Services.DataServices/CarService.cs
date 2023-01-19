@@ -82,7 +82,7 @@
 
         public async Task DeleteAsync(CarDTO car)
         {
-            var allCars = this._carRepository.GetAllAsync().Result;
+            var allCars = await this._carRepository.GetAllAsync();
             var searchedCar = allCars
                 .FirstOrDefault(x => x.Brand == car.Brand && x.Model == car.Model && x.Year == car.Year);
             if (searchedCar == null)
