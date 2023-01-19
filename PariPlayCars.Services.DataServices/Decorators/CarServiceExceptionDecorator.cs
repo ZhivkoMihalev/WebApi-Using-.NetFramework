@@ -1,57 +1,116 @@
-﻿using PariPlayCars.Data.Middlewares.Contracts;
-using PariPlayCars.Services.DataServices.Contracts;
-using PariPlayCars.Services.DataServices.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace PariPlayCars.Services.DataServices.Decorators
+﻿namespace PariPlayCars.Services.DataServices.Decorators
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using PariplayCars.Data.Logs.NLog;
+    using PariPlayCars.Services.DataServices.Contracts;
+    using PariPlayCars.Services.DataServices.Models;
+
     public class CarServiceExceptionDecorator : ICarService
     {
         private readonly ICarService _decorated;
-        private readonly IExceptionMiddleware _middleware;
+        private readonly ILogger _logger;
 
-        public CarServiceExceptionDecorator(ICarService decorated, IExceptionMiddleware middleware)
+        public CarServiceExceptionDecorator(ICarService decorated, NLogLogger logger)
         {
-            _decorated = decorated;
-            this._middleware = middleware;
+            this._decorated = decorated;
+            this._logger = logger;
         }
 
-        public Task CreateAsync(CarDTO car)
+        public async Task CreateAsync(CarDTO car)
         {
-            //this._middleware.InvokeAsync();
-            return _decorated.CreateAsync(car);
+            try
+            {
+                await this._decorated.CreateAsync(car);
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+            }
         }
 
-        public Task DeleteAsync(CarDTO car)
+        public async Task DeleteAsync(CarDTO car)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await this._decorated.DeleteAsync(car);
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+            }
         }
 
-        public Task<IEnumerable<CarDTO>> GetAllAsync()
+        public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await this._decorated.GetAllAsync();
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+                throw;
+            }
         }
 
-        public Task<CarDTO> GetByIdAsync(string id)
+        public async Task<CarDTO> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await this._decorated.GetByIdAsync(id);
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+                throw;
+            }
         }
 
-        public Task<IEnumerable<CarDTO>> SearchByBrandAsync(string search)
+        public async Task<IEnumerable<CarDTO>> SearchByBrandAsync(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await this._decorated.SearchByBrandAsync(search);
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+                throw;
+            }
         }
 
-        public Task<IEnumerable<CarDTO>> SearchByModelAsync(string search)
+        public async Task<IEnumerable<CarDTO>> SearchByModelAsync(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await this._decorated.SearchByModelAsync(search);
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+                throw;
+            }
         }
 
-        public Task Update(string id, CarDTO newCar)
+        public async Task Update(string id, CarDTO newCar)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await this._decorated.Update(id, newCar);
+            }
+
+            catch (Exception ex)
+            {
+                this._logger.WriteException(ex);
+            }
         }
     }
 }

@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NHibernate", "NHibernate", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariPlayCars.Data.NHibernate", "PariPlayCars.Data.NHibernate\PariPlayCars.Data.NHibernate.csproj", "{B273A2F8-EF88-4EEB-81D6-CE778E6A6B08}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{F8F1EEA1-5506-47E0-992C-CA07404EE1A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PariplayCars.Data.Logs.NLog", "PariplayCars.Data.Logs.NLog\PariplayCars.Data.Logs.NLog.csproj", "{44B4BF5A-B4A0-4677-898A-911E4F4A623C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{B273A2F8-EF88-4EEB-81D6-CE778E6A6B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B273A2F8-EF88-4EEB-81D6-CE778E6A6B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B273A2F8-EF88-4EEB-81D6-CE778E6A6B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B4BF5A-B4A0-4677-898A-911E4F4A623C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B4BF5A-B4A0-4677-898A-911E4F4A623C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B4BF5A-B4A0-4677-898A-911E4F4A623C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B4BF5A-B4A0-4677-898A-911E4F4A623C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +102,8 @@ Global
 		{4517582A-FCE2-44A1-A28C-9D16A49580D8} = {5479B2B2-7D1A-437A-B477-E0C761710A35}
 		{51D1AD05-8E0C-4BB0-A5F1-092A633ADB7D} = {5479B2B2-7D1A-437A-B477-E0C761710A35}
 		{B273A2F8-EF88-4EEB-81D6-CE778E6A6B08} = {51D1AD05-8E0C-4BB0-A5F1-092A633ADB7D}
+		{F8F1EEA1-5506-47E0-992C-CA07404EE1A0} = {5479B2B2-7D1A-437A-B477-E0C761710A35}
+		{44B4BF5A-B4A0-4677-898A-911E4F4A623C} = {F8F1EEA1-5506-47E0-992C-CA07404EE1A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A81BED1-82A4-41CA-8327-49CC9A1FE4A0}

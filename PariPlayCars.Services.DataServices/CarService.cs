@@ -23,6 +23,11 @@
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
             var cars = await this._carRepository.GetAllAsync();
+            if (cars == null)
+            {
+                throw new EntityNotFoundException(ExceptionMessages.NoCars);
+            }
+
             return cars.Select(x => new CarDTO
             {
                 Brand = x.Brand,

@@ -81,7 +81,6 @@
     <Compile Include="ApplicationExceptions\EntityAlreadyExistsException.cs" />
     <Compile Include="ApplicationExceptions\EntityNotFoundException.cs" />
     <Compile Include="C__MigrationHistory.cs" />
-    <Compile Include="Middlewares\Contracts\IExceptionMiddleware.cs" />
     <Compile Include="Middlewares\CustomExceptionMiddleware.cs" />
     <Compile Include="Migrations\202212010732568_InitialCreate.cs" />
     <Compile Include="Migrations\202212010732568_InitialCreate.designer.cs">
@@ -113,6 +112,9 @@
       <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>
       <Name>PariPlayCars.Data.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Middlewares\Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

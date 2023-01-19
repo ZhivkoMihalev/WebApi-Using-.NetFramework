@@ -5,14 +5,12 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using PariPlayCars.Data.ApplicationExceptions;
-    using PariPlayCars.Data.Middlewares.Contracts;
 
-    public class CustomExceptionMiddleware : IExceptionMiddleware
+    public class CustomExceptionMiddleware
     {
         private readonly RequestDelegate _next;
 
         public CustomExceptionMiddleware(RequestDelegate next)
-            //:base(next)
         {
             this._next = next;
         }
