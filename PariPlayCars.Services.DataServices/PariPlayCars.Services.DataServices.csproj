@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="CarService.cs" />
     <Compile Include="Contracts\ICarService.cs" />
+    <Compile Include="Contracts\ICarServiceDecorator.cs" />
     <Compile Include="Decorators\CarServiceExceptionDecorator.cs" />
     <Compile Include="Models\CarDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

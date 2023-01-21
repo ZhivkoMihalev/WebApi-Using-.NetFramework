@@ -288,6 +288,18 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AbstractDbContext\PariplayCars.Data.UnitOfWorkDbContext.csproj">
+      <Project>{2D785450-A120-4BC1-98E5-08DF004CD85A}</Project>
+      <Name>PariplayCars.Data.UnitOfWorkDbContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PariplayCars.Data.Logs.NLog\PariplayCars.Data.Logs.NLog.csproj">
+      <Project>{44B4BF5A-B4A0-4677-898A-911E4F4A623C}</Project>
+      <Name>PariplayCars.Data.Logs.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PariPlayCars.Data.Repositories\PariPlayCars.Data.Repositories.csproj">
+      <Project>{158F7233-DD12-4DAB-960F-6B35424D76B9}</Project>
+      <Name>PariPlayCars.Data.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data\PariPlayCars.Data.csproj">
       <Project>{54FDCD87-CEC3-491F-AC0D-7DEB0D98A9ED}</Project>
       <Name>PariPlayCars.Data</Name>
