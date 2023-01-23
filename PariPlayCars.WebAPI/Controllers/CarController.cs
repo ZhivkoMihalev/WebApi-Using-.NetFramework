@@ -8,9 +8,9 @@
 
     public class CarController : ApiController
     {
-        private readonly ICarServiceDecorator _service;
+        private readonly ICarService _service;
 
-        public CarController(ICarServiceDecorator carService)
+        public CarController(ICarService carService)
         {
             this._service = carService;
         }
@@ -40,11 +40,6 @@
         [HttpPost]
         public async Task Edit(string id, CarDTO inputCar)
         {
-            if (!ModelState.IsValid)
-            {
-                //return message "It doesn't exist a car with this id.
-            }
-
             await this._service.Update(id, inputCar);
         }
 

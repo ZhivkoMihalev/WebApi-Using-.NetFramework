@@ -7,12 +7,13 @@
     using PariPlayCars.Services.DataServices.Contracts;
     using PariPlayCars.Services.DataServices.Models;
 
-    public class CarServiceExceptionDecorator : ICarServiceDecorator
+    public class CarServiceExceptionDecorator : ICarService
     {
         private readonly ICarService _decorated;
         private readonly ILogger _logger;
 
         public CarServiceExceptionDecorator(ICarService decorated, ILogger logger)
+            //: base(decorated)
         {
             this._decorated = decorated;
             this._logger = logger;

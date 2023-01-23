@@ -1,5 +1,6 @@
 ﻿namespace PariPlayCars.Services.DataServices
 {
+    using PariPlayCars.Data;
     using PariPlayCars.Data.Utils;
     using PariPlayCars.Data.Models;
     using PariPlayCars.Data.ApplicationExceptions;
@@ -7,7 +8,6 @@
     using PariPlayCars.Services.DataServices.Contracts;
 
     using System.Linq;
-    using PariPlayCars.Data;
     using System.Threading.Tasks;
     using System.Collections.Generic;
 
