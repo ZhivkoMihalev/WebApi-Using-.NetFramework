@@ -6,6 +6,7 @@ using PariPlayCars.Data;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
 
 namespace PariPlayCars.Web
 {
@@ -17,8 +18,6 @@ namespace PariPlayCars.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //var db = new PariPlayCarsDbContext();
         }
     }
 }
