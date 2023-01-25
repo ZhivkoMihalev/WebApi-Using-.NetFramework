@@ -309,6 +309,10 @@
       <Project>{44B4BF5A-B4A0-4677-898A-911E4F4A623C}</Project>
       <Name>PariplayCars.Data.Logs.NLog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PariPlayCars.Data.Models\PariPlayCars.Data.Models.csproj">
+      <Project>{4517582A-FCE2-44A1-A28C-9D16A49580D8}</Project>
+      <Name>PariPlayCars.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PariPlayCars.Data.Repositories\PariPlayCars.Data.Repositories.csproj">
       <Project>{158F7233-DD12-4DAB-960F-6B35424D76B9}</Project>
       <Name>PariPlayCars.Data.Repositories</Name>
