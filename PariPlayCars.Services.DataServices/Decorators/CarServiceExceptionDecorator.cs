@@ -1,11 +1,11 @@
 ﻿namespace PariPlayCars.Services.DataServices.Decorators
 {
-    using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
     using PariplayCars.Data.Logs.NLog;
-    using PariPlayCars.Services.DataServices.Contracts;
     using PariPlayCars.Services.DataServices.Models;
+    using PariPlayCars.Services.DataServices.Contracts;
+    using PariPlayCars.Services.DataServices.Operators;
 
     public class CarServiceExceptionDecorator : ICarService
     {
@@ -13,7 +13,6 @@
         private readonly ILogger _logger;
 
         public CarServiceExceptionDecorator(ICarService decorated, ILogger logger)
-            //: base(decorated)
         {
             this._decorated = decorated;
             this._logger = logger;
@@ -21,97 +20,44 @@
 
         public async Task CreateAsync(CarDTO car)
         {
-            try
-            {
-                await this._decorated.CreateAsync(car);
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-            }
+            var creator = new CarCreator(this._decorated, this._logger);
+            await creator.CreateAsync(car);
         }
 
         public async Task DeleteAsync(CarDTO car)
         {
-            try
-            {
-                await this._decorated.DeleteAsync(car);
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-            }
+            var remover = new CarRemover(this._decorated, this._logger);
+            await remover.DeleteAsync(car);
         }
 
         public async Task<IEnumerable<CarDTO>> GetAllAsync()
         {
-            try
-            {
-                return await this._decorated.GetAllAsync();
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-                throw;
-            }
+            var getter = new CarGetter(this._decorated, this._logger);
+            return await getter.GetAllAsync();
         }
 
         public async Task<CarDTO> GetByIdAsync(string id)
         {
-            try
-            {
-                return await this._decorated.GetByIdAsync(id);
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-                throw;
-            }
+            var getter = new CarGetter(this._decorated, this._logger);
+            return await getter.GetByIdAsync(id);
         }
 
         public async Task<IEnumerable<CarDTO>> SearchByBrandAsync(string search)
         {
-            try
-            {
-                return await this._decorated.SearchByBrandAsync(search);
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-                throw;
-            }
+            var searcher = new CarSearcher(this._decorated, this._logger);
+            return await searcher.SearchByBrandAsync(search);
         }
 
         public async Task<IEnumerable<CarDTO>> SearchByModelAsync(string search)
         {
-            try
-            {
-                return await this._decorated.SearchByModelAsync(search);
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-                throw;
-            }
+            var searcher = new CarSearcher(this._decorated, this._logger);
+            return await searcher.SearchByModelAsync(search);
         }
 
         public async Task Update(string id, CarDTO newCar)
         {
-            try
-            {
-                await this._decorated.Update(id, newCar);
-            }
-
-            catch (Exception ex)
-            {
-                this._logger.WriteException(ex);
-            }
+            var editor = new CarEditor(this._decorated, this._logger);
+            await editor.Update(id, newCar);
         }
     }
 }

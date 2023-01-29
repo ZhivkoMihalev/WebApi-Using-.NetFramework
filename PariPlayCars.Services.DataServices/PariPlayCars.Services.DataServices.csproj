@@ -69,10 +69,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operators\CarCreator.cs" />
     <Compile Include="CarService.cs" />
+    <Compile Include="Contracts\CarOperator.cs" />
     <Compile Include="Contracts\ICarService.cs" />
     <Compile Include="Decorators\CarServiceExceptionDecorator.cs" />
     <Compile Include="Models\CarDTO.cs" />
+    <Compile Include="Operators\CarEditor.cs" />
+    <Compile Include="Operators\CarGetter.cs" />
+    <Compile Include="Operators\CarRemover.cs" />
+    <Compile Include="Operators\CarSearcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
